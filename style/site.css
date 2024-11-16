@@ -1,0 +1,55 @@
+body {
+    background-image: url(style/images/background_image2.jpg);
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+.navtitle{
+    font-family: 'Lato', sans-serif;
+}
+
+.heads{
+    font-family: 'Coustard', serif;
+    font-size: 50px;
+    color: #ffffff;
+    padding-top: 1%;
+}
+
+.navbar{
+    box-shadow:  0 3px 4px rgba(0,0,0,0.16), 0 3px 4px;
+}
+
+.container .jumbotron{
+    padding: 4%;
+    opacity: 0.7;
+    width: 20%;
+}
+
+.container .jumbotron{
+    background-color: rgb(107, 144, 159);
+    padding: 5%;
+    box-shadow:  0 3px 4px rgba(0,0,0,0.16), 0 1px 1px;
+}
+
+.container .jumbotron h3,
+.container .jumbotron p{
+    font-family: 'Coustard', serif;
+    color: black;
+}
+
+.container .row a{
+    font-size: 45px;
+    font-family: 'Coustard', serif;
+    background-color:#F2AA4CFF;
+    color: rgb(255, 255, 255);
+}
+
+.container .row-1 a{
+    font-size: 45px;
+    font-family: 'Coustard', serif;
+    background-color:#89ABE3FF;
+    color: rgb(255, 255, 255);
+    margin-left: 378px;
+}
+

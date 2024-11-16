@@ -1,0 +1,212 @@
+body{
+    background-color: #e4e9f7;
+}
+
+.navtitle {
+    font-family: 'Lato', sans-serif;
+}
+
+.heads {
+    font-family: 'Coustard', serif;
+    font-size: 100px;
+    color: #ffffff;
+    padding-top: 1%;
+}
+
+.navbar {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.16), 0 3px 4px;
+}
+
+.container .form-box-cont {
+    padding: 5px -20px;
+    padding-top: 45px;
+    margin-bottom: -15px;
+    justify-content: center; 
+    white-space: nowrap;
+}
+
+.container .form-box-cont input{
+    font-size: 20px;
+    padding: 20px;
+}
+
+.container .form-box-cont h2{
+    font-size: 35px;
+    font-family: 'Coustard', serif;
+    color: white;
+    background-color: #A8D5BA;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.container .form-box-cont #output {
+    font-family: 'Coustard', serif;
+    background-color: #F2AA4CFF;
+    color: rgb(255, 255, 255);
+    padding-left: 2%;
+}
+
+.container-box {
+    padding: 2%;
+}
+
+.container-box  .table {
+    width: 100%;
+}
+
+.container-box  .table th,
+.container-box  .table td{
+    width: 10%;
+    text-align: center;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.container-box .table a{
+    font-size: 18px;
+    color: #89ABE3FF;
+    font-weight: bold;
+}
+
+
+#timetable
+.container .form-box-container {
+    padding-bottom: 15px;
+    justify-content: center; 
+}
+
+.container .form-box-container input{
+    font-size: 20px;
+    padding: 20px;
+    width: 120%;
+}
+
+.container .form-box-container h2{
+    font-size: 35px;
+    font-family: 'Coustard', serif;
+    color: white;
+    background-color: #A8D5BA;
+    text-align: center;
+    padding: 20px 30px;
+    width: 120%;
+    margin-top: 60px;
+    justify-content: center; 
+}
+
+.container .form-box-container #output {
+    font-family: 'Coustard', serif;
+    background-color: #F2AA4CFF;
+    color: rgb(255, 255, 255);
+    padding-left: 2%;
+    width: 120%;
+}
+
+.container-box .row .btn{
+    background-color: #89ABE3FF;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    margin-top: 6%;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+}
+
+.container-box .row .btn:hover{
+    background-color: #F2AA4CFF;
+    border: 1px solid white;
+}
+
+
+
+.container-box .row-btn .btn{
+    background-color: #89ABE3FF;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    margin-top: 6%;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+}
+
+.container-box .row-btn .btn:hover{
+    background-color: #F2AA4CFF;
+    border: 1px solid white;
+}
+
+
+
+.container-box .row-btn-1 .btn{
+    background-color: #89ABE3FF;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    position: absolute;
+    margin-top: 5%;
+    right: 650px; 
+    font-size: 21px;
+}
+
+.container-box .row-btn-1 .btn:hover{
+    background-color: #F2AA4CFF;
+    border: 1px solid white;
+}
+
+
+.container-box .row-btn-2 .btn{
+    background-color: #89ABE3FF;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    margin-top: 6%;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+}
+
+.container-box .row-btn-2 .btn:hover{
+    background-color: #F2AA4CFF;
+    border: 1px solid white;
+}
+
+
+.container-box .row-btn-3 .btn{
+    background-color: #89ABE3FF;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    margin-top: 6%;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+}
+
+.container-box .row-btn-3 .btn:hover{
+    background-color: #F2AA4CFF;
+    border: 1px solid white;
+}
+
+
+.container-box .row-btn-4 .btn{
+    background-color: #89ABE3FF;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    margin-top: 6%;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+}
+
+.container-box .row-btn-4 .btn:hover{
+    background-color: #F2AA4CFF;
+    border: 1px solid white;
+}
+

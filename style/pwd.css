@@ -1,0 +1,115 @@
+body{
+    background-color: #e4e9f7;
+}
+
+.row{
+    padding-top: 2%;
+    padding-bottom: 4%;
+}
+
+
+.box {
+    border-radius: 20px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+                0 32px 64px -48px rgba(0,0,0,0.5);
+    margin-left: -180px;
+    margin-right: 100px;
+    background-color: transparent;
+}
+
+.navtitle {
+    font-family: 'Lato', sans-serif;
+}
+
+.heads {
+    font-family: 'Coustard', serif;
+    font-size: 100px;
+    color: #ffffff;
+    padding-top: 1%;
+}
+
+.navbar {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.16), 0 3px 4px;
+}
+
+.container .card{
+    width: 150%;
+    margin: 40px auto; 
+    padding: 20px 70px;
+}
+
+.container .form-box label{
+    padding-top: 5%;
+    font-size: 20px;
+}
+
+.container .form-box label{
+    font-size: 20px;
+}
+
+.container .links{
+    margin-top: 5%;
+}
+
+.container .links a{
+    color: #89ABE3FF; 
+    font-size: 22px;
+}
+
+.container .links a:hover{
+    color: #F2AA4CFF;
+}
+
+.container .links p{
+    font-size: 22px;
+    text-align: center;
+}
+
+
+.container .form-box-container{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.container .form-box-container .btn-primary{
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: transparent;
+    color: #A4C6EB;
+    border: 2px solid #A4C6EB;
+    border-radius: 25px;
+    box-shadow: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.container .form-box-container .btn-primary:hover{
+    background-color: #F2AA4CFF;
+    border: 2px solid #F2AA4CFF;
+    color: #fff;
+}
+
+.container .form-box-container .btn-link{
+    display: inline-block;
+    padding: 10px 40px; 
+    font-size: 20px;
+    color: #fff;
+    background-color: #A8D5BA;
+    text-decoration: none;
+    border:  2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.container .form-box-container .btn-link:hover{
+    background-color: #A4C6EB;
+    font-weight: bold;
+}
+
+.container .card-body p{
+    font-weight: bold;
+    font-size: 25px;
+}

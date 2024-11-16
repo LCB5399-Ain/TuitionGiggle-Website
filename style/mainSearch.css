@@ -1,0 +1,63 @@
+body {
+    background-image: url(../style/images/back_img1.jpg);  
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.navtitle {
+    font-family: 'Lato', sans-serif;
+}
+
+.heads {
+    font-family: 'Coustard', serif;
+    font-size: 50px;
+    color: #ffffff;
+    padding-top: 1%;
+}
+
+.navbar {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.16), 0 3px 4px;
+}
+
+.nav .dropdown-menu a{
+    font-size: 19px;
+}
+
+.container-card {
+    padding-top: 3%;
+    opacity: 1.1;
+}
+
+.container-card .card {
+    width: 18rem;
+    height: 22rem;
+    margin: 2%;
+}
+
+.container-card .card h5{
+    padding-top: 5%;
+    text-align: center;
+}
+
+.container-card .card-body .btn {
+    background-color: #89ABE3FF;
+    padding: 10px 30px;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+.container-card .card-body .btn:hover{
+    background-color: #F2AA4CFF;
+    border: 1px solid white;
+}
+
+.container-card .card-body .centered-image {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    height: 45%;
+    display: flex;
+    align-items: center; 
+}

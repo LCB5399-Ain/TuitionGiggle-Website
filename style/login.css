@@ -1,0 +1,93 @@
+body{
+    background-color: #e4e9f7;
+}
+
+.row{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.box {
+    border-radius: 20px;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+            0 32px 64px -48px rgba(0,0,0,0.5);
+    width: 160%;
+    justify-content: center;
+    align-items: center;
+    margin-left: -120px;
+}
+
+.navtitle {
+    font-family: 'Lato', sans-serif;
+}
+
+.heads {
+    font-family: 'Coustard', serif;
+    font-size: 100px;
+    color: #ffffff;
+    padding-top: 1%;
+}
+
+.navbar {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.16), 0 3px 4px;
+}
+
+.container .card{
+    margin: 40px auto; 
+    padding: 30px 30px;
+}
+
+.container .form-box label{
+    padding-top: 5%;
+}
+
+.container h1{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container p{
+    font-size: 22px;
+}
+
+.container .form-box label{
+    font-size: 20px;
+}
+
+.container .form-box .btn{
+    margin-top: 40px;
+    padding: 10px 40px; 
+    font-size: 20px;
+    color: #fff;
+    background-color: #89ABE3FF;
+    text-decoration: none;
+    border:  2px solid #89ABE3FF;
+    border-radius: 25px;
+    box-shadow: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.container .form-box .btn:hover{
+    background-color: #F2AA4CFF;
+    border:  2px solid #F2AA4CFF;
+    font-weight: bold;
+}
+
+.container .links{
+    margin-top: 5%;
+}
+
+.container .links a{
+    color: #89ABE3FF; 
+    font-size: 20px;
+}
+
+.container .links a:hover{
+    color: #F2AA4CFF;
+}
+
+.container .links p{
+    font-size: 20px;
+    text-align: center;
+}
+
+
