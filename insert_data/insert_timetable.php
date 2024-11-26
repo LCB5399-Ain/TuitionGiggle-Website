@@ -170,7 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -194,28 +195,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label>Student ID</label>
                             <input type="text" name="studentID" class="form-control" value="<?php echo $studentID; ?>" placeholder="Enter student's ID">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $studentID_err; ?></span>
+                            <span class="text-danger"><?php echo $studentID_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($year_err)) ? 'has-error' : ''; ?>">
                             <label>Year</label>
                             <input type="text" name="year" class="form-control" value="<?php echo $year; ?>" placeholder="Enter student's year">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $year_err; ?></span>
+                            <span class="text-danger"><?php echo $year_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($classroom_err)) ? 'has-error' : ''; ?>">
                             <label>Classroom</label>
                             <input type="text" name="classroom" class="form-control" value="<?php echo $classroom; ?>" placeholder="Enter classroom name">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $classroom_err; ?></span>
+                            <span class="text-danger"><?php echo $classroom_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
                             <label>Subject</label>
                             <input type="text" name="subject" class="form-control" value="<?php echo $subject; ?>" placeholder="Enter class subject">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $subject_err; ?></span>
+                            <span class="text-danger"><?php echo $subject_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($day_err)) ? 'has-error' : ''; ?>">
@@ -231,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="Sunday" <?php echo ($day == 'Sunday') ? 'selected' : ''; ?>>Sunday</option>
                             </select>
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $day_err; ?></span>
+                            <span class="text-danger"><?php echo $day_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($time_of_room)) ? 'has-error' : ''; ?>">
@@ -239,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <select name="time_of_room" class="form-control">
                                 <option value="" disabled selected>Select class time</option>
                                 <option value="09:00AM - 10:30AM" <?php echo ($time_of_room == '09:00AM - 10:30AM') ? 'selected' : ''; ?>>09:00AM - 10:30AM</option>
-                                <option value="10:00AM - 11:30PM" <?php echo ($time_of_room == '10:00AM - 11:30PM') ? 'selected' : ''; ?>>10:00AM - 11:30PM</option>
+                                <option value="10:00AM - 11:30AM" <?php echo ($time_of_room == '10:00AM - 11:30AM') ? 'selected' : ''; ?>>10:00AM - 11:30AM</option>
                                 <option value="11:00AM - 12:30PM" <?php echo ($time_of_room == '11:00AM - 12:30PM') ? 'selected' : ''; ?>>11:00AM - 12:30PM</option>
                                 <option value="12:00PM - 1:30PM" <?php echo ($time_of_room == '12:00PM - 1:30PM') ? 'selected' : ''; ?>>12:00PM - 1:30PM</option>
                                 <option value="1:00PM - 2:30PM" <?php echo ($time_of_room == '1:00PM - 2:30PM') ? 'selected' : ''; ?>>1:00PM - 2:30PM</option>
@@ -252,7 +253,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="8:00PM - 9:30PM" <?php echo ($time_of_room == '8:00PM - 9:30PM') ? 'selected' : ''; ?>>8:00PM - 9:30PM</option>
                             </select>
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $time_of_room_err; ?></span>
+                            <span class="text-danger"><?php echo $time_of_room_err; ?></span>
                         </div>
 
 
@@ -293,7 +294,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             let query = searchInput.value;
 
             if (query) {
-                fetch('../search_data/search_student_in_parent.php', {
+                fetch('../search_data/search_student.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

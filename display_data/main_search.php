@@ -54,7 +54,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                     
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="../home.php">Home</a>
+                    <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
                     <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                     <a class="dropdown-item" href="../logout.php">Logout</a>
                     </div>
@@ -63,7 +63,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </ul>
             </div>
     </nav>
-    <!-- End of adapted code -->
 
     <div class="container-card">
 
@@ -81,22 +80,22 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         <div class="card">
             <div class="card-body">
-                <img src="../style/images/parent_icon.png" class="centered-image" alt="search_parent icon;">
+                <img src="../style/images/teacher_icon.png" class="centered-image" alt="search_teacher icon">
                     <div class="text-center">
-                        <h5 class="title">Parents</h5>
-                        <p class="text">Search parents.</p>
-                        <a href="search_parents.php" class="btn btn-primary">Parents</a>
+                        <h5 class="title">Teachers</h5>
+                        <p class="text">Search teachers.</p>
+                        <a href="search_teachers.php" class="btn btn-primary">Teachers</a>
                     </div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-body">
-                <img src="../style/images/teacher_icon.png" class="centered-image" alt="search_teacher icon">
+                <img src="../style/images/parent_icon.png" class="centered-image" alt="search_parent icon;">
                     <div class="text-center">
-                        <h5 class="title">Teachers</h5>
-                        <p class="text">Search teachers.</p>
-                        <a href="search_teachers.php" class="btn btn-primary">Teachers</a>
+                        <h5 class="title">Parents</h5>
+                        <p class="text">Search parents.</p>
+                        <a href="search_parents.php" class="btn btn-primary">Parents</a>
                     </div>
             </div>
         </div>
@@ -172,17 +171,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         <div class="card">
             <div class="card-body">
-                <img src="../style/images/sibling_icon.png" class="centered-image" alt="search_sibling icon">
-                    <div class="text-center">
-                        <h5 class="title">Sibling</h5>
-                        <p class="text">Show siblings.</p>
-                        <a href="search_siblings.php" class="btn btn-primary">Sibling</a>
-                    </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
                 <img src="../style/images/complaints_icon.png" class="centered-image" alt="show_complaints icon">
                     <div class="text-center">
                         <h5 class="title">Complaints</h5>
@@ -191,7 +179,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </div>
             </div>
         </div>
-
+    <!-- End of adapted code -->
 </div>
 </div>
 

@@ -13,51 +13,53 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 require_once "dbconf.php"; 
 
+// Code adapted from TutorialRepublic, nd
 // Initialize the variables
-$new_password = $confirm_password = "";
-$new_password_err = $confirm_password_err = "";
+$newPassword = $confirmPassword = "";
+$newPassword_error = $confirmPassword_error = "";
 
 
 // Use POST to process form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // new_password validation
-    $new_password = trim($_POST["new_password"] ?? '');
-    if (empty($new_password)) {
-        $new_password_err = "Please enter the new password.";
-    } elseif (strlen($new_password) < 8) {
-        $new_password_err = "Password must have at least 8 characters.";
+    $newPassword = trim($_POST["newPassword"] ?? '');
+    if (!$newPassword) {
+        $newPassword_error = "New password is required.";
+    } elseif (strlen($newPassword) < 8) {
+        $newPassword_error = "The password must have more than 8 characters.";
     } 
     
     // Confirm password validation
-    $confirm_password = trim($_POST["confirm_password"] ?? '');
-    if (empty($confirm_password)) {
-        $confirm_password_err = "Please confirm your password.";
+    $confirmPassword = trim($_POST["confirmPassword"] ?? '');
+    if (!$confirmPassword) {
+        $confirmPassword_error = "Please confirm your password.";
     } else {
-        if ($new_password !== $confirm_password) {
-            $confirm_password_err = "Sorry, password did not match.";
+        if ($newPassword !== $confirmPassword) {
+            $confirmPassword_error = "Sorry, password did not match.";
         }
     }
 
     // Checking for errors before insert data in database
-    if(empty($new_password_err) && empty($confirm_password_err)){
-        $query = "UPDATE tuition SET password = ? WHERE tuitionID = ?";
+    if(!$newPassword_error && !$confirmPassword_error) {
+        $queryPass = "UPDATE tuition SET password = ? WHERE tuitionID = ?";
+        $stmnt = $link-> prepare($queryPass);
 
-        if($stmnt = mysqli_prepare($link, $query)){
-            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+        if($stmnt) {
+            $hashed_password = password_hash($newPassword, PASSWORD_DEFAULT);
             $tuitionID = $_SESSION["tuitionID"];
 
             mysqli_stmt_bind_param($stmnt, "si", $hashed_password, $tuitionID);
 
             if(mysqli_stmt_execute($stmnt)){
-                echo "Password successfully updated";
+                echo "The password is successfully updated";
                 // Destroy session
                 session_destroy();
                 header("location: login.php");
                 exit();
             } else{
                 // Display the error
-                echo "An error has occured. Please try again.";
+                echo "An error has occured. Please try inputting the password again.";
             }
     }
 
@@ -71,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 mysqli_close($link);
 
 }
+// End of adapted code
 
 ?>
 
@@ -82,7 +85,7 @@ mysqli_close($link);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/pwd.css">
-    <title>Reset Password</title>
+    <title>Change Password</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -98,28 +101,28 @@ mysqli_close($link);
 </head>
 
 <body>
-
+<!-- Code adapted from Yassein, 2020 -->
 <div class="container py-5">
     <div class="row">
-        <div class="col-10 col-sm-6 col-md-5 mx-auto">
+        <div class="col-10 col-md-5 mx-auto">
 
         <div class="box">
-            <div class="card bg-light mb-3">
+            <div class="card bg-light mb-5">
                     
                 <div class="card-body">
                 
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <?php echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '" method="post">'; ?> 
 
-                    <div class="form-box <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
+                    <div class="form-box <?php echo (!empty($newPassword_error)) ? 'has-error' : ''; ?>">
                         <label>New Password</label>
-                        <input type="password" name="new_password" class="form-control" value="<?php echo $new_password; ?>">
-                        <span class="help-block" style="color:red"><?php echo $new_password_err; ?></span>
+                        <input type="password" name="newPassword" class="form-control" value="<?php echo $newPassword; ?>">
+                        <span class="text-danger"><?php echo $newPassword_error; ?></span>
                     </div>
 
-                    <div class="form-box <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <div class="form-box <?php echo (!empty($confirmPassword_error)) ? 'has-error' : ''; ?>">
                         <label>Confirm Password</label>
-                        <input type="password" name="confirm_password" class="form-control">
-                        <span class="help-block" style="color:red"><?php echo $confirm_password_err; ?></span>
+                        <input type="password" name="confirmPassword" class="form-control">
+                        <span class="text-danger"><?php echo $confirmPassword_error; ?></span>
                     </div>
 
                     <div class="form-box-container">
@@ -137,6 +140,7 @@ mysqli_close($link);
         </div>
     </div>
 </div>
+<!-- End of adapted code -->
 
 </body>
 

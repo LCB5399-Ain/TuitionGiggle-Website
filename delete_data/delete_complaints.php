@@ -20,7 +20,7 @@ $stmt->bind_param("i", $complaintsID);
 
 if ($stmt->execute()) {
     echo "<script>
-    alert('Student successfully deleted');
+    alert('Complaint successfully deleted');
     window.location.href='../display_data/search_complaints.php';
     </script>";
 

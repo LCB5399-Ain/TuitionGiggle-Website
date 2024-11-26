@@ -14,8 +14,8 @@ require_once "../dbconf.php";
 
 // Initialize the variables
 $studentID = 0;
-$subject = $feedback = $teacherName = "";
-$subject_err = $feedback_err = $teacherName_err = $studentID_err = "";
+$feedbackSubject = $feedback = $teacherName = "";
+$feedbackSubject_err = $feedback_err = $teacherName_err = $studentID_err = "";
 
 // Retrieve the students
 $queryStudents = "SELECT * FROM students WHERE students.tuitionID = '{$_SESSION['tuitionID']}'";
@@ -33,13 +33,13 @@ if (mysqli_num_rows($studentsResult) <= 0) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $studentID = 0;
-    $subject = $feedback = $teacherName = "";
-    $subject_err = $feedback_err = $teacherName_err = $studentID_err = "";
+    $feedbackSubject = $feedback = $teacherName = "";
+    $feedbackSubject_err = $feedback_err = $teacherName_err = $studentID_err = "";
 
     // Subject validation
-    $subject = isset($_POST["subject"]) ? trim($_POST["subject"]) : "";
-    if (empty($subject)) {
-        $subject_err = "Please enter the feedback subject.";
+    $feedbackSubject = isset($_POST["feedbackSubject"]) ? trim($_POST["feedbackSubject"]) : "";
+    if (empty($feedbackSubject)) {
+        $feedbackSubject_err = "Please enter the feedback feedbackSubject.";
     }
 
     // Feedback validation
@@ -75,16 +75,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Checking for errors before insert data in database
-    if (empty($subject_err) && empty($feedback_err) && empty($teacherName_err) && empty($studentID_err)
+    if (empty($feedbackSubject_err) && empty($feedback_err) && empty($teacherName_err) && empty($studentID_err)
     ) {
         $insertQuery = "INSERT INTO feedback (subject, feedback, teacherName, tuitionID, studentID) VALUES (?, ?, ?, ?, ?)";
 
         if ($stmnt = mysqli_prepare($link, $insertQuery)) {
-            mysqli_stmt_bind_param($stmnt, "ssssi", $subject, $feedback, $teacherName, $tuitionID, $studentID);
+            mysqli_stmt_bind_param($stmnt, "ssssi", $feedbackSubject, $feedback, $teacherName, $tuitionID, $studentID);
 
         $tuitionID = $_SESSION["tuitionID"];
         $studentID = $studentID;
-        $subject = $subject;
+        $feedbackSubject = $feedbackSubject;
         $feedback = $feedback;
         $teacherName = $teacherName;
 
@@ -152,7 +152,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                  
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -161,7 +162,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -172,32 +172,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="card-body p-4">
                 <?php echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '" method="post">'; ?> 
 
-                        <div class="form-box <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($feedbackSubject_err)) ? 'has-error' : ''; ?>">
                             <label>Subject</label>
-                            <input type="text" name="subject" class="form-control" value="<?php echo $subject; ?>" placeholder="Enter the subject">
+                            <input type="text" name="feedbackSubject" class="form-control" value="<?php echo $feedbackSubject; ?>" placeholder="Enter the subject">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $subject_err; ?></span>
+                            <span class="text-danger"><?php echo $feedbackSubject_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($teacherName_err)) ? 'has-error' : ''; ?>">
                             <label>Teacher's Name</label>
                             <input type="text" name="teacherName" class="form-control" value="<?php echo $teacherName; ?>" placeholder="Enter teacher's name">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $teacherName_err; ?></span>
+                            <span class="text-danger"><?php echo $teacherName_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($feedback_err)) ? 'has-error' : ''; ?>">
                             <label>Feedback</label>
                             <input type="text" name="feedback" class="form-control" value="<?php echo $feedback; ?>" placeholder="Enter the feedback">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $feedback_err; ?></span>
+                            <span class="text-danger"><?php echo $feedback_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($studentID_err)) ? 'has-error' : ''; ?>">
                             <label>Student ID</label>
                             <input type="text" name="studentID" class="form-control" value="<?php echo $studentID; ?>" placeholder="Enter student's ID">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $studentID_err; ?></span>
+                            <span class="text-danger"><?php echo $studentID_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -228,6 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         </div>
     </div>
+<!-- End of adapted code -->
 </div>
 
 

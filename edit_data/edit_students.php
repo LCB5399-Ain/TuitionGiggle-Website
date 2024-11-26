@@ -142,7 +142,8 @@ mysqli_close($link);
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                    <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -151,7 +152,6 @@ mysqli_close($link);
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -170,28 +170,28 @@ mysqli_close($link);
                             <label>Full Name</label>
                             <input type="text" name="fullName" class="form-control" value="<?php echo $fullName; ?>" placeholder="Enter student's full name">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $fullName_err; ?></span>
+                            <span class="text-danger"><?php echo $fullName_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($year_err)) ? 'has-error' : ''; ?>">
                             <label>Year</label>
                             <input type="text" name="year" class="form-control" value="<?php echo $year; ?>" placeholder="Enter student's year">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $year_err; ?></span>
+                            <span class="text-danger"><?php echo $year_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($date_of_birth)) ? 'has-error' : ''; ?>">
                             <label>Date Of Birth</label>
                             <input type="text" name="date_of_birth" class="form-control" value="<?php echo $date_of_birth; ?>" placeholder="Enter student's date of birth">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $date_of_birth_err; ?></span>
+                            <span class="text-danger"><?php echo $date_of_birth_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
                             <label>Address</label>
                             <input type="text" name="address" class="form-control" value="<?php echo $address; ?>" placeholder="Enter tuition address">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $address_err; ?></span>
+                            <span class="text-danger"><?php echo $address_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -208,7 +208,7 @@ mysqli_close($link);
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

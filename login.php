@@ -12,48 +12,49 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 require_once "dbconf.php"; 
 
-$username = $password = "";
-$username_err = $password_err = "";
+// Code adapted from TutorialRepublic, nd
+$loginUsername = $password = "";
+$loginUsername_err = $password_err = "";
 
 // Use POST to process form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Username Validation
-    $username = trim($_POST["username"] ?? '');
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter your username.";
+    $loginUsername = trim($_POST["loginUsername"] ?? '');
+    if (empty(trim($_POST["loginUsername"]))) {
+        $loginUsername_err = "Please enter the tuition center's username.";
     } 
 
     // Password Validation
     $password = trim($_POST["password"] ?? '');
     if (empty(trim($_POST["password"]))) {
-        $password_err = "Please enter your password.";
+        $password_err = "Please enter the tuition center's password.";
     }
 
 
     // CHeck for errors and execute query
-    if (empty($username_err) && empty($password_err)) {
+    if (empty($loginUsername_err) && empty($password_err)) {
         $query = "SELECT tuitionID, username, password FROM tuition WHERE username = ?";
 
         if ($stmnt = mysqli_prepare($link, $query)) {
-            mysqli_stmt_bind_param($stmnt, "s", $input_username);
+            mysqli_stmt_bind_param($stmnt, "s", $input_loginUsername);
 
-            $input_username = $username;
+            $input_loginUsername = $loginUsername;
 
             if (mysqli_stmt_execute($stmnt)) {
                 mysqli_stmt_store_result($stmnt);
 
-                // If username is found, check the password
+                // If loginUsername is found, check the password
                 if (mysqli_stmt_num_rows($stmnt) == 1) {
-                    mysqli_stmt_bind_result($stmnt, $tuitionID, $username, $hashPassword);
+                    mysqli_stmt_bind_result($stmnt, $tuitionID, $loginUsername, $hashingPassword);
                     
                     if(mysqli_stmt_fetch($stmnt)) {
-                        if (password_verify($password, $hashPassword)) {
+                        if (password_verify($password, $hashingPassword)) {
                             session_start();
 
                             $_SESSION["loggedin"] = true;
                             $_SESSION["tuitionID"] = $tuitionID;
-                            $_SESSION["username"] = $username;
+                            $_SESSION["loginUsername"] = $loginUsername;
 
                             header("location: home.php");
                         } else {
@@ -62,11 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
 
                 } else {
-                    $username_err = "Username is not recognized. Please check and try again.";
+                    $loginUsername_err = "Username is not recognized. Please check and try again.";
                 }
             
             } else {
-                echo "An error has occured. Please try again.";
+                echo "An error has occured. Please try login again.";
             }
     }
 
@@ -77,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 mysqli_close($link);
 
 }
-
+//End of adapted code
 ?>
 
 <!DOCTYPE html>
@@ -128,18 +129,18 @@ mysqli_close($link);
                    
                     <?php echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '" method="post">'; ?> 
 
-                        <div class="form-box <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($loginUsername_err)) ? 'has-error' : ''; ?>">
                             <label>Username</label>
-                            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                            <input type="text" name="loginUsername" class="form-control" value="<?php echo $loginUsername; ?>">
                             <!-- Display error message -->
-                            <span class="help-block" style="color:red"><?php echo $username_err; ?></span> <!-- If there is an error, it will be shown to the user -->
+                            <span class="text-danger"><?php echo $loginUsername_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                             <label>Password</label>
                             <input type="password" name="password" class="form-control">
                             <!-- Display error message -->
-                            <span class="help-block" style="color:red"><?php echo $password_err; ?></span>
+                            <span class="text-danger"><?php echo $password_err; ?></span>
                         </div>
 
                         <div class="form-box">

@@ -131,7 +131,8 @@ mysqli_close($link);
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                    <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -141,7 +142,6 @@ mysqli_close($link);
         </div>
 </nav>
 
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -160,14 +160,14 @@ mysqli_close($link);
                             <label for="title">Title</label>
                             <input type="text" name="title" class="form-control" value="<?php echo $title; ?>" placeholder="Enter the title">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $title_err; ?></span>
+                            <span class="text-danger"><?php echo $title_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($announcement_err)) ? 'has-error' : ''; ?>">
                             <label for="announcement">Announcement</label>
                             <input type="text" name="announcement" class="form-control" value="<?php echo $announcement; ?>" placeholder="Enter announcement">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $announcement_err; ?></span>
+                            <span class="text-danger"><?php echo $announcement_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -184,7 +184,7 @@ mysqli_close($link);
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

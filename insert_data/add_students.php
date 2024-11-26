@@ -152,7 +152,8 @@ mysqli_close($link);
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -161,7 +162,6 @@ mysqli_close($link);
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -176,14 +176,14 @@ mysqli_close($link);
                             <label>Student ID</label>
                             <input type="text" name="studentID" class="form-control" value="<?php echo $studentID; ?>" placeholder="Enter student's ID">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $studentID_err; ?></span>
+                            <span class="text-danger"><?php echo $studentID_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($classID_err)) ? 'has-error' : ''; ?>">
                             <label>Class ID</label>
                             <input type="text" name="classID" class="form-control" value="<?php echo $classID; ?>" placeholder="Enter class's ID">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $classID_err; ?></span>
+                            <span class="text-danger"><?php echo $classID_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -215,7 +215,7 @@ mysqli_close($link);
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 
 
 <!-- Function for searching student's and class id -->
@@ -229,7 +229,7 @@ mysqli_close($link);
             let query = searchInput.value;
 
             if (query) {
-                fetch('../search_data/search_student_in_parent.php', {
+                fetch('../search_data/search_student.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

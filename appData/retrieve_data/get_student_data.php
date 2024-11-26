@@ -6,6 +6,7 @@ include '../conf.php';
 if (isset($_POST['studentID']) && is_numeric($_POST['studentID'])) {
 $studentID = intval($_POST['studentID']);
 
+// Code adapted from Yassein, 2020
 // Retrieve the student data with studentID
 $result = $connect -> query("SELECT * FROM students WHERE studentID='".$studentID."'");
 
@@ -19,6 +20,7 @@ while ($row = $result ->fetch_assoc()) {
 
 // Use json to send the data
 echo json_encode($dataResult);
+// End of adapted code
 
 } else {
   // Handle potential errors with prepared statement

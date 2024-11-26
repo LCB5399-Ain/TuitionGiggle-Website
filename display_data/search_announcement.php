@@ -39,7 +39,8 @@
                     <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                     
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="../home.php">Home</a>
+                    <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                     <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                     <a class="dropdown-item" href="../logout.php">Logout</a>
                     </div>
@@ -48,7 +49,6 @@
             </ul>
             </div>
     </nav>
-    <!-- End of adapted code -->
 
     <div class="container mt-2">
         <div class="col-10 col-md-6 mx-auto" style="padding: 2%;">
@@ -73,7 +73,7 @@
                 </tr>
             </thead>
             <tbody>
-
+    <!-- End of adapted code -->
 
                 <tr>
 

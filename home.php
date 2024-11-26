@@ -66,16 +66,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <div class="container-1">
     <div class="jumbotron">
-        <h1 class="text-center heads">Welcome <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
+        <h1 class="text-center heads">Welcome <?php echo htmlspecialchars($_SESSION["loginUsername"]); ?>!</h1>
         <hr class="divider">
         <p class="text-center">
             Let's make today productive and achieve great things together!<br>
-            You can easily insert new information, or search for what you need.<br>
+            You can easily add new information, or search for what you need.<br>
             Just choose a button below to begin:
         </p>
 
         <div class="row-buttons">
-            <a type="submit" class="btn-transparent" href="insert_data/main_insert.php">Insert</a>
+            <a type="submit" class="btn-transparent" href="insert_data/main_insert.php">Add</a>
             <a type="submit" class="btn-color" href="display_data/main_search.php">Search</a>
         </div>
         

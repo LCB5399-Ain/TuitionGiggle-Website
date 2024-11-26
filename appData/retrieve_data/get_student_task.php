@@ -6,6 +6,7 @@ include '../conf.php';
 if (isset($_POST['classID']) && is_numeric($_POST['classID'])) {
   $classID = intval($_POST['classID']);
 
+// Code adapted from Yassein, 2020
 // Retrieve the class data with classID
 $result = $connect -> query("SELECT * FROM task WHERE classID='".$classID."' ORDER BY date_of_task DESC");
 
@@ -19,6 +20,7 @@ while ($row = $result ->fetch_assoc()) {
 
 // Use json to send the data
 echo json_encode($dataResult);
+// End of adapted code
 
 } else {
   // Handle potential errors with prepared statement

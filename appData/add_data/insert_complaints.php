@@ -16,6 +16,7 @@ $phoneNumber = $obj['phoneNumber'];
 $title = $obj['title'];
 $feedback = $obj['feedback'];
 
+// Code adapted from Yassein, 2020
 // Insert data into complaints table
 $query = "INSERT INTO complaints (tuitionID, role, fullName, phoneNumber, title, feedback) VALUES ($tuitionID, '$role', '$fullName', '$phoneNumber', '$title', '$feedback')";
 
@@ -27,6 +28,9 @@ if (mysqli_query($connect, $query)) {
     $json = json_encode($message);
 
     echo $json;
+
+    // End of adapted code
+    
 } else {
     // Error handling if the prepared statement fails
     $response = ['error' => 'Database error. Please try again later.'];

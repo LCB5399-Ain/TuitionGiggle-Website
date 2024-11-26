@@ -14,33 +14,33 @@ require_once "../dbconf.php";
 
 // Search the query and display result
 if (!empty($_POST['query'])) {
-    $searchQuery = "SELECT * FROM sibling 
+    $searchQuery = "SELECT * FROM students 
     WHERE fullName LIKE '" . mysqli_real_escape_string($link, $_POST['query']) . "%' 
-    AND sibling.tuitionID = '" . mysqli_real_escape_string($link, $_SESSION['tuitionID']) . "'";
-   
+    AND students.tuitionID = '" . mysqli_real_escape_string($link, $_SESSION['tuitionID']) . "'";
 $searchResult = mysqli_query($link, $searchQuery);
 
     if ($searchResult && mysqli_num_rows($searchResult) > 0) {
         while ($row = mysqli_fetch_assoc($searchResult)) {
-            $siblingID = $row['siblingID'];
+            $studentID = $row['studentID'];
             $fullName = $row['fullName'];
-            $date_of_birth = $row['date_of_birth'];
-
+            $year = $row['year'];
+            
             echo <<<HTML
             <br/>
-            <a href="../edit_data/edit_siblings.php?siblingID={$siblingID}" style="color: #ffffff; padding-top: 2px; overflow-y: auto;">
-                ID: $siblingID<br/>
+            <a href="../edit_data/edit_students.php?studentID={$studentID}" style="color: #ffffff; padding-top: 2px; overflow-y: auto;">
+                ID: $studentID<br/>
                 Full Name: $fullName<br/>
-                Date of Birth: $date_of_birth<br/>
+                Year: $year<br/>
             </a>
             <hr style="border-width: 2px; overflow-y: auto;">
             HTML;
         }
     } else {
         ?>
-        <p style="color:red">Sibling is not found...</p>
+        <p style="color:red">Student is not found...</p>
         <?php
     }
+
 }
 
 ?>

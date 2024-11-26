@@ -14,8 +14,8 @@ require_once "../dbconf.php";
 
 // Initialize the variables
 $studentID = 0;
-$fullName = $phoneNumber = $email = $address = "";
-$fullName_err = $phoneNumber_err = $email_err = $address_err = $studentID_err = "";
+$fullName = $phoneNumber = $parentEmail = $parentAddress = "";
+$fullName_err = $phoneNumber_err = $parentEmail_err = $parentAddress_err = $studentID_err = "";
 
 
 // Retrieve the students
@@ -46,15 +46,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 
     // Email validation
-    $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-    if (empty($email)) {
-        $email_err = "Please enter the parent's email.";
+    $parentEmail = isset($_POST["parentEmail"]) ? trim($_POST["parentEmail"]) : "";
+    if (empty($parentEmail)) {
+        $parentEmail_err = "Please enter the parent's email.";
     } 
 
     // Address validation
-    $address = isset($_POST["address"]) ? trim($_POST["address"]) : "";
-    if (empty($address)) {
-        $address_err = "Please enter the parent's address.";
+    $parentAddress = isset($_POST["parentAddress"]) ? trim($_POST["parentAddress"]) : "";
+    if (empty($parentAddress)) {
+        $parentAddress_err = "Please enter the parent's address.";
     } 
 
     // StudentID validation
@@ -79,19 +79,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 // Checking for errors before insert data in database
-if (empty($fullName_err) && empty($phoneNumber_err) && empty($email_err) && empty($address_err) && empty($studentID_err)) {
+if (empty($fullName_err) && empty($phoneNumber_err) && empty($parentEmail_err) && empty($parentAddress_err) && empty($studentID_err)) {
 
     $insertQuery = "INSERT INTO parents (tuitionID, fullName, phoneNumber, email, address, studentID) VALUES (?, ?, ?, ?, ?, ?)";
 
     if ($stmnt = mysqli_prepare($link, $insertQuery)) {
-        mysqli_stmt_bind_param($stmnt, "sssssi", $tuitionID, $fullName, $phoneNumber, $email, $address, $studentID);
+        mysqli_stmt_bind_param($stmnt, "sssssi", $tuitionID, $fullName, $phoneNumber, $parentEmail, $parentAddress, $studentID);
 
         $tuitionID = $_SESSION["tuitionID"];
         $studentID = $studentID;
         $fullName = $fullName;
         $phoneNumber = $phoneNumber;
-        $email = $email;
-        $address = $address;
+        $parentEmail = $parentEmail;
+        $parentAddress = $parentAddress;
 
         $parentResult = mysqli_stmt_execute($stmnt);
         if ($parentResult) {
@@ -156,7 +156,8 @@ if (empty($fullName_err) && empty($phoneNumber_err) && empty($email_err) && empt
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -165,7 +166,6 @@ if (empty($fullName_err) && empty($phoneNumber_err) && empty($email_err) && empt
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -180,35 +180,35 @@ if (empty($fullName_err) && empty($phoneNumber_err) && empty($email_err) && empt
                             <label>Full Name</label>
                             <input type="text" name="fullName" class="form-control" value="<?php echo $fullName; ?>" placeholder="Enter parent's full name">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $fullName_err; ?></span>
+                            <span class="text-danger"><?php echo $fullName_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($studentID_err)) ? 'has-error' : ''; ?>">
                             <label>Student ID</label>
                             <input type="text" name="studentID" class="form-control" value="<?php echo $studentID; ?>" placeholder="Enter student's ID">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $studentID_err; ?></span>
+                            <span class="text-danger"><?php echo $studentID_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($phoneNumber)) ? 'has-error' : ''; ?>">
                             <label>Phone Number</label>
                             <input type="text" name="phoneNumber" class="form-control" value="<?php echo $phoneNumber; ?>" placeholder="Enter parent's phone number">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $phoneNumber_err; ?></span>
+                            <span class="text-danger"><?php echo $phoneNumber_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($email)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($parentEmail)) ? 'has-error' : ''; ?>">
                             <label>Email</label>
-                            <input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Enter parent's email">
+                            <input type="text" name="parentEmail" class="form-control" value="<?php echo $parentEmail; ?>" placeholder="Enter parent's email">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $email_err; ?></span>
+                            <span class="text-danger"><?php echo $parentEmail_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($parentAddress_err)) ? 'has-error' : ''; ?>">
                             <label>Address</label>
-                            <input type="text" name="address" class="form-control" value="<?php echo $address; ?>" placeholder="Enter parent's address">
+                            <input type="text" name="parentAddress" class="form-control" value="<?php echo $parentAddress; ?>" placeholder="Enter parent's address">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $address_err; ?></span>
+                            <span class="text-danger"><?php echo $parentAddress_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -232,7 +232,7 @@ if (empty($fullName_err) && empty($phoneNumber_err) && empty($email_err) && empt
 
             </div>
         </div>
-
+<!-- End of adapted code -->
     </div>
 </div>
 
@@ -248,7 +248,7 @@ if (empty($fullName_err) && empty($phoneNumber_err) && empty($email_err) && empt
             let query = searchInput.value;
 
             if (query) {
-                fetch('../search_data/search_student_in_parent.php', {
+                fetch('../search_data/search_student.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

@@ -14,6 +14,7 @@ $classID = intval($obj['classID']);
 $subject = $obj['subject'];
 $task = $obj['task'];
 
+// Code adapted from Yassein, 2020
 // Insert data into the task table
 $query = "INSERT INTO task (tuitionID, classID, subject, task) VALUES ($tuitionID, $classID, '$subject', '$task')";
 
@@ -26,6 +27,8 @@ if (mysqli_query($connect, $query)) {
     $json = json_encode($message);
 
     echo $json;
+
+    // End of adapted code
 
 } else {
     // Handle the sql error

@@ -14,8 +14,8 @@ require_once "../dbconf.php";
 
 // Initialize the variables
 $studentID = 0;
-$amount = 0.00;
-$studentID_err = $amount_err = "";
+$totalAmount = 0.00;
+$studentID_err = $totalAmount_err = "";
 
 // Retrieve the students
 $queryStudents = "SELECT * FROM students WHERE students.tuitionID = '{$_SESSION['tuitionID']}'";
@@ -32,10 +32,10 @@ if (mysqli_num_rows($studentsResult) <= 0) {
 // Use POST to process form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // amount validation
-    $amount = isset($_POST["amount"]) ? trim($_POST["amount"]) : "";
-    if (empty($amount)) {
-        $amount_err = "Please enter the amount of fee payment.";
+    // totalAmount validation
+    $totalAmount = isset($_POST["totalAmount"]) ? trim($_POST["totalAmount"]) : "";
+    if (empty($totalAmount)) {
+        $totalAmount_err = "Please enter the totalAmount of fee payment.";
     } 
 
     // studentID validation
@@ -60,16 +60,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Checking for errors before insert data in database
-    if (empty($studentID_err) && empty($amount_err)) {
+    if (empty($studentID_err) && empty($totalAmount_err)) {
        
         $insertQuery = "INSERT INTO fees (amount, tuitionID, studentID) VALUES (?, ?, ?)";
 
         if ($stmnt = mysqli_prepare($link, $insertQuery)) {
-            mysqli_stmt_bind_param($stmnt, "dii", $amount, $tuitionID, $studentID);
+            mysqli_stmt_bind_param($stmnt, "dii", $totalAmount, $tuitionID, $studentID);
 
         $tuitionID = $_SESSION["tuitionID"];
         $studentID = $studentID;
-        $amount= $amount;
+        $totalAmount= $totalAmount;
 
         $studentResult = mysqli_stmt_execute($stmnt);
         if ($studentResult) {
@@ -135,7 +135,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -144,7 +145,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -159,14 +159,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label>Student ID</label>
                             <input type="text" name="studentID" class="form-control" value="<?php echo $studentID; ?>" placeholder="Enter student's ID">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $studentID_err; ?></span>
+                            <span class="text-danger"><?php echo $studentID_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($amount_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($totalAmount_err)) ? 'has-error' : ''; ?>">
                             <label>Total Fee</label>
-                            <input type="text" name="amount" class="form-control" value="<?php echo $amount; ?>" placeholder="Enter the fee amount">
+                            <input type="text" name="totalAmount" class="form-control" value="<?php echo $totalAmount; ?>" placeholder="Enter the total fee">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $amount_err; ?></span>
+                            <span class="text-danger"><?php echo $totalAmount_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -191,6 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         </div>
     </div>
+<!-- End of adapted code -->
 </div>
 
 

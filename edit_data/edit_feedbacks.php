@@ -137,7 +137,8 @@ mysqli_close($link);
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                    <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -147,7 +148,7 @@ mysqli_close($link);
         </div>
 </nav>
 
-<!-- End of adapted code -->
+
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -165,21 +166,21 @@ mysqli_close($link);
                             <label for="teacherName">Teacher's Name</label>
                             <input type="text" name="teacherName" class="form-control" value="<?php echo $teacherName; ?>" placeholder="Enter teacher's name">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $teacherName_err; ?></span>
+                            <span class="text-danger"><?php echo $teacherName_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
                             <label for="subject">Subject</label>
                             <input type="text" name="subject" class="form-control" value="<?php echo $subject; ?>" placeholder="Enter the subject">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $subject_err; ?></span>
+                            <span class="text-danger"><?php echo $subject_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($feedback_err)) ? 'has-error' : ''; ?>">
                             <label for="feedback">Feedback</label>
                             <input type="text" name="feedback" class="form-control" value="<?php echo $feedback; ?>" placeholder="Enter the feedback">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $feedback_err; ?></span>
+                            <span class="text-danger"><?php echo $feedback_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -196,7 +197,7 @@ mysqli_close($link);
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 </body>
 
 

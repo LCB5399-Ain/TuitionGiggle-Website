@@ -14,8 +14,8 @@ require_once "../dbconf.php";
 
 // Initialize the variables
 $studentID = 0;
-$fullName = $phoneNumber = $relationship = $email = $address = "";
-$fullName_err = $phoneNumber_err = $relationship_err = $email_err = $address_err = $studentID_err = "";
+$fullName = $phoneNumber = $relationship = $contactEmail = $contactAddress = "";
+$fullName_err = $phoneNumber_err = $relationship_err = $contactEmail_err = $contactAddress_err = $studentID_err = "";
 
 // Retrieve the students
 $queryStudents = "SELECT * FROM students WHERE students.tuitionID = '{$_SESSION['tuitionID']}'";
@@ -51,15 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Email validation
-    $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-    if (empty($email)) {
-        $email_err = "Please enter the person's email.";
+    $contactEmail = isset($_POST["contactEmail"]) ? trim($_POST["contactEmail"]) : "";
+    if (empty($contactEmail)) {
+        $contactEmail_err = "Please enter the person's email.";
     } 
 
     // Address validation
-    $address = isset($_POST["address"]) ? trim($_POST["address"]) : "";
-    if (empty($address)) {
-        $address_err = "Please enter the person's address.";
+    $contactAddress = isset($_POST["contactAddress"]) ? trim($_POST["contactAddress"]) : "";
+    if (empty($contactAddress)) {
+        $contactAddress_err = "Please enter the person's address.";
     } 
 
     // studentID validation
@@ -84,19 +84,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 // Checking for errors before insert data in database
-if (empty($fullName_err) && empty($phoneNumber_err) && empty($relationship_err) && empty($email_err) && empty($address_err) && empty($studentID_err)) {
+if (empty($fullName_err) && empty($phoneNumber_err) && empty($relationship_err) && empty($contactEmail_err) && empty($contactAddress_err) && empty($studentID_err)) {
     $insertQuery = "INSERT INTO emergencyContacts (tuitionID, fullName, phoneNumber, relationship, email, address, studentID) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     if ($stmnt = mysqli_prepare($link, $insertQuery)) {
-        mysqli_stmt_bind_param($stmnt, "ssssssi", $tuitionID, $fullName, $phoneNumber, $relationship, $email, $address, $studentID);
+        mysqli_stmt_bind_param($stmnt, "ssssssi", $tuitionID, $fullName, $phoneNumber, $relationship, $contactEmail, $contactAddress, $studentID);
 
       $tuitionID = $_SESSION["tuitionID"];
       $studentID = $studentID;
       $fullName = $fullName;
       $phoneNumber = $phoneNumber;
       $relationship = $relationship;
-      $email = $email;
-      $address = $address;
+      $contactEmail = $contactEmail;
+      $contactAddress = $contactAddress;
 
     $studentResult = mysqli_stmt_execute($stmnt);
     if ($studentResult) {
@@ -160,7 +160,8 @@ mysqli_close($link);
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -169,7 +170,6 @@ mysqli_close($link);
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -191,35 +191,35 @@ mysqli_close($link);
                             <label>Student ID</label>
                             <input type="text" name="studentID" class="form-control" value="<?php echo $studentID; ?>" placeholder="Enter student's ID">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $studentID_err; ?></span>
+                            <span class="text-danger"><?php echo $studentID_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($phoneNumber)) ? 'has-error' : ''; ?>">
                             <label>Phone Number</label>
                             <input type="text" name="phoneNumber" class="form-control" value="<?php echo $phoneNumber; ?>" placeholder="Enter the person's phone number">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $phoneNumber_err; ?></span>
+                            <span class="text-danger"><?php echo $phoneNumber_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($relationship_err)) ? 'has-error' : ''; ?>">
                             <label>Relationship</label>
                             <input type="text" name="relationship" class="form-control" value="<?php echo $relationship; ?>" placeholder="Enter their relationship">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $relationship_err; ?></span>
+                            <span class="text-danger"><?php echo $relationship_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($email)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($contactEmail)) ? 'has-error' : ''; ?>">
                             <label>Email</label>
-                            <input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Enter the person's email">
+                            <input type="text" name="contactEmail" class="form-control" value="<?php echo $contactEmail; ?>" placeholder="Enter the person's email">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $email_err; ?></span>
+                            <span class="text-danger"><?php echo $contactEmail_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($contactAddress_err)) ? 'has-error' : ''; ?>">
                             <label>Address</label>
-                            <input type="text" name="address" class="form-control" value="<?php echo $address; ?>" placeholder="Enter the person's address">
+                            <input type="text" name="contactAddress" class="form-control" value="<?php echo $contactAddress; ?>" placeholder="Enter the person's address">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $address_err; ?></span>
+                            <span class="text-danger"><?php echo $contactAddress_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -245,7 +245,7 @@ mysqli_close($link);
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 
 
 <!-- Function for searching student's id -->
@@ -259,7 +259,7 @@ mysqli_close($link);
             let query = searchInput.value;
 
             if (query) {
-                fetch('../search_data/search_student_in_parent.php', {
+                fetch('../search_data/search_student.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

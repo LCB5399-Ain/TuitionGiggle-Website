@@ -13,30 +13,30 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 require_once "../dbconf.php";
 
 // Initialize the variables
-$username = $password = $confirm_password = $fullName = $year = $date_of_birth = $address = "";
-$username_err = $password_err = $confirm_password_err = $fullName_err = $year_err = $date_of_birth_err = $address_err = "";
+$studentUsername = $password = $confirm_password = $fullName = $studentYear = $student_dateOfBirth = $studentAddress = "";
+$studentUsername_err = $password_err = $confirm_password_err = $fullName_err = $studentYear_err = $student_dateOfBirth_err = $studentAddress_err = "";
 
 
 // Use POST to process form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Username validation
-    $submitted_username = trim($_POST["username"] ?? '');
-    if (empty($submitted_username)) {
-        $username_err = "Please enter a username";
+    $submitted_studentUsername = trim($_POST["studentUsername"] ?? '');
+    if (empty($submitted_studentUsername)) {
+        $studentUsername_err = "Please enter the student's username";
     } else {
-        $usernameSql = "SELECT studentID FROM students WHERE username = ?";
+        $studentUsernameSql = "SELECT studentID FROM students WHERE username = ?";
 
-        if ($stmnt = mysqli_prepare($link, $usernameSql)) {
-            mysqli_stmt_bind_param($stmnt, "s", $submitted_username);
+        if ($stmnt = mysqli_prepare($link, $studentUsernameSql)) {
+            mysqli_stmt_bind_param($stmnt, "s", $submitted_studentUsername);
 
             if (mysqli_stmt_execute($stmnt)) {
                 mysqli_stmt_store_result($stmnt);
 
                 if (mysqli_stmt_num_rows($stmnt) > 0) {
-                    $username_err = "Oops! This username is already taken by someone.";
+                    $studentUsername_err = "Oops! This studentUsername is already taken by someone.";
                 } else {
-                    $username = $submitted_username;
+                    $studentUsername = $submitted_studentUsername;
                 }
             } else {
                 echo "An error occurred. Please try again.";
@@ -62,7 +62,7 @@ if (empty($submitted_password)) {
 // Confirm password validation
 $submitted_confirmPassword = trim($_POST["confirm_password"] ?? '');
 if (empty($submitted_confirmPassword)) {
-    $confirm_password_err = "Please confirm your password.";
+    $confirm_password_err = "Please confirm the password.";
 } elseif (empty($password_err) && $submitted_confirmPassword !== $submitted_confirmPassword) {
     $confirm_password_err = "Sorry, passwords do not match.";
 }
@@ -76,42 +76,42 @@ if (empty($fullName)) {
 } 
 
 // Year validation
-$year = isset($_POST["year"]) ? trim($_POST["year"]) : "";
-if (empty($year)) {
-    $year_err = "Please enter student's year.";
+$studentYear = isset($_POST["studentYear"]) ? trim($_POST["studentYear"]) : "";
+if (empty($studentYear)) {
+    $studentYear_err = "Please enter student's year.";
 } 
 
 // Date of birth validation
-$date_of_birth = isset($_POST["date_of_birth"]) ? trim($_POST["date_of_birth"]) : "";
-if (empty($date_of_birth)) {
-    $date_of_birth_err = "Please enter student's date of birth.";
+$student_dateOfBirth = isset($_POST["student_dateOfBirth"]) ? trim($_POST["student_dateOfBirth"]) : "";
+if (empty($student_dateOfBirth)) {
+    $student_dateOfBirth_err = "Please enter student's date of birth.";
 } 
 
 // Address validation
-$address = isset($_POST["address"]) ? trim($_POST["address"]) : "";
-if (empty($address)) {
-    $address_err = "Please enter the student's address.";
+$studentAddress = isset($_POST["studentAddress"]) ? trim($_POST["studentAddress"]) : "";
+if (empty($studentAddress)) {
+    $studentAddress_err = "Please enter the student's address.";
 } 
 
 
 // Checking for errors before insert data in database
 if (
-    empty($username_err) && empty($password_err) &&
-    empty($confirm_password_err) && empty($fullName_err) && empty($year_err) && empty($address_err) && empty($date_of_birth_err)
+    empty($studentUsername_err) && empty($password_err) &&
+    empty($confirm_password_err) && empty($fullName_err) && empty($studentYear_err) && empty($studentAddress_err) && empty($student_dateOfBirth_err)
 ) {
 
     $insertQuery = "INSERT INTO students (tuitionID, username, password, fullName, year, date_of_birth, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     if ($stmnt = mysqli_prepare($link, $insertQuery)) {
-        mysqli_stmt_bind_param($stmnt, "sssssss", $tuitionID, $username, $password, $fullName, $year, $date_of_birth, $address);
+        mysqli_stmt_bind_param($stmnt, "sssssss", $tuitionID, $studentUsername, $password, $fullName, $studentYear, $student_dateOfBirth, $studentAddress);
 
         $tuitionID = $_SESSION["tuitionID"];
-        $username = $username;
+        $studentUsername = $studentUsername;
         $password = password_hash($password, PASSWORD_DEFAULT);
         $fullName = $fullName;
-        $year = $year;
-        $date_of_birth = $date_of_birth;
-        $address = $address;
+        $studentYear = $studentYear;
+        $student_dateOfBirth = $student_dateOfBirth;
+        $studentAddress = $studentAddress;
 
         $studentResult = mysqli_stmt_execute($stmnt);
         if ($studentResult) {
@@ -175,7 +175,8 @@ if (
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -184,7 +185,6 @@ if (
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -196,53 +196,53 @@ if (
                    
                 <?php echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF']) . '" method="post">'; ?> 
 
-                        <div class="form-box <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($studentUsername_err)) ? 'has-error' : ''; ?>">
                             <label>Username</label>
-                            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" aria-describedby="Username" placeholder="Enter student's username">
+                            <input type="text" name="studentUsername" class="form-control" value="<?php echo $studentUsername; ?>" aria-describedby="Username" placeholder="Enter student's username">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $username_err; ?></span>
+                            <span class="text-danger"><?php echo $studentUsername_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                             <label>Password</label>
                             <input type="password" name="password" class="form-control" value="<?php echo $password; ?>" placeholder="Enter password">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $password_err; ?></span>
+                            <span class="text-danger"><?php echo $password_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                             <label>Confirm Password</label>
                             <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>" placeholder="Confirm password">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $confirm_password_err; ?></span>
+                            <span class="text-danger"><?php echo $confirm_password_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($fullName_err)) ? 'has-error' : ''; ?>">
                             <label>Full Name</label>
                             <input type="text" name="fullName" class="form-control" value="<?php echo $fullName; ?>" placeholder="Enter student's full name">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $fullName_err; ?></span>
+                            <span class="text-danger"><?php echo $fullName_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($year_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($studentYear_err)) ? 'has-error' : ''; ?>">
                             <label>Year</label>
-                            <input type="text" name="year" class="form-control" value="<?php echo $year; ?>" placeholder="Enter student's year">
+                            <input type="text" name="studentYear" class="form-control" value="<?php echo $studentYear; ?>" placeholder="Enter student's year">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $year_err; ?></span>
+                            <span class="text-danger"><?php echo $studentYear_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($date_of_birth)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($student_dateOfBirth)) ? 'has-error' : ''; ?>">
                             <label>Date Of Birth</label>
-                            <input type="text" name="date_of_birth" class="form-control" value="<?php echo $date_of_birth; ?>" placeholder="Enter student's date of birth">
+                            <input type="date" name="student_dateOfBirth" class="form-control" value="<?php echo $student_dateOfBirth; ?>" placeholder="Enter student's date of birth">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $date_of_birth_err; ?></span>
+                            <span class="text-danger"><?php echo $student_dateOfBirth_err; ?></span>
                         </div>
 
-                        <div class="form-box <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-box <?php echo (!empty($studentAddress_err)) ? 'has-error' : ''; ?>">
                             <label>Address</label>
-                            <input type="text" name="address" class="form-control" value="<?php echo $address; ?>" placeholder="Enter tuition address">
+                            <input type="text" name="studentAddress" class="form-control" value="<?php echo $studentAddress; ?>" placeholder="Enter student's address">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $address_err; ?></span>
+                            <span class="text-danger"><?php echo $studentAddress_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -259,7 +259,7 @@ if (
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -149,7 +149,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a class="navbar-toggler-icon" id="navbardrop" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../insert_data/main_insert.php">Add Data</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -158,7 +159,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -173,14 +173,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label>Title</label>
                             <input type="text" name="title" class="form-control" value="<?php echo $title; ?>" placeholder="Enter the title">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $title_err; ?></span>
+                            <span class="text-danger"><?php echo $title_err; ?></span>
                         </div>
 
                         <div class="form-box <?php echo (!empty($announcement_err)) ? 'has-error' : ''; ?>">
                             <label>Announcement</label>
                             <input type="text" name="announcement" class="form-control" value="<?php echo $announcement; ?>" placeholder="Enter the announcement">
                             <!-- Display error message -->
-                            <span class="text-danger" style="color:red"><?php echo $announcement_err; ?></span>
+                            <span class="text-danger"><?php echo $announcement_err; ?></span>
                         </div>
 
                         <div class="form-box">
@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 
 </body>
 

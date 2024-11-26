@@ -18,7 +18,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/mainInsert.css">
+    <link rel="stylesheet" href="../style/mainInsert2.css">
     <title>Insert</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -52,7 +52,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <a class="navbar-toggler-icon" id="navbardrop" role="button" data-toggle="dropdown"></a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../home.php">Home</a>
+                <a class="dropdown-item" href="../display_data/main_search.php">Search Data</a>
                 <a class="dropdown-item" href="../reset_pwd.php">Change Password</a>
                 <a class="dropdown-item" href="../logout.php">Logout</a>
                 </div>
@@ -61,7 +61,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </ul>
         </div>
 </nav>
-<!-- End of adapted code -->
 
 <div class="container-card">
 
@@ -79,22 +78,22 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         <div class="card">
             <div class="card-body">
-                <img src="../style/images/parent_icon.png" class="centered-image" alt="add_parent icon" style="width: 50%; height: 50%;">
+                <img src="../style/images/teacher_icon.png" class="centered-image" alt="add_teacher icon" style="width: 50%; height: 50%;">
                     <div class="text-center">
-                        <h5 class="title">Parents</h5>
-                        <p class="text">Add parents/guardians of the student here.</p>
-                        <a href="insert_parents.php" class="btn btn-primary">Add Parents</a>
+                        <h5 class="title">Teachers</h5>
+                        <p class="text">Add teachers that works at the tuition center here.</p>
+                        <a href="insert_teachers.php" class="btn btn-primary">Add Teachers</a>
                     </div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-body">
-                <img src="../style/images/teacher_icon.png" class="centered-image" alt="add_teacher icon" style="width: 50%; height: 50%;">
+                <img src="../style/images/parent_icon.png" class="centered-image" alt="add_parent icon" style="width: 50%; height: 50%;">
                     <div class="text-center">
-                        <h5 class="title">Teachers</h5>
-                        <p class="text">Add teachers that works at the tuition center here.</p>
-                        <a href="insert_teachers.php" class="btn btn-primary">Add Teachers</a>
+                        <h5 class="title">Parents</h5>
+                        <p class="text">Add parents/guardians of the student here.</p>
+                        <a href="insert_parents.php" class="btn btn-primary">Add Parents</a>
                     </div>
             </div>
         </div>
@@ -146,6 +145,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </div>
 
+<!-- End of adapted code -->
+ 
+        <div class="row justify-content-center-1">
+        <div class="col-md-6 col-lg-4">
         <div class="card">
             <div class="card-body">
                 <img src="../style/images/emergency_icon.png" class="centered-image" alt="add_emergency icon">
@@ -156,7 +159,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </div>
             </div>
         </div>
-
+</div>
+        <div class="col-md-6 col-lg-4-">
         <div class="card">
             <div class="card-body">
                 <img src="../style/images/fee_icon.png" class="centered-image" alt="add_fee icon">
@@ -167,18 +171,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </div>
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-body">
-                <img src="../style/images/sibling_icon.png" class="centered-image" alt="add_sibling icon">
-                    <div class="text-center">
-                        <h5 class="title">Sibling</h5>
-                        <p class="text">Add students' siblings that might attend the tuition center.</p>
-                        <a href="insert_sibling.php" class="btn btn-primary">Add Sibling</a>
-                    </div>
-            </div>
         </div>
 
+</div>
 </div>
 </div>
 
