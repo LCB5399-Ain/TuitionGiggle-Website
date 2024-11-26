@@ -42,7 +42,7 @@ if (!empty($_POST['query'])) {
             HTML;
         }
     } else {
-        echo "<p style='color:red'>Parent is not found...</p>";
+        echo "<p>Parent is not found...</p>";
     }
 }
 

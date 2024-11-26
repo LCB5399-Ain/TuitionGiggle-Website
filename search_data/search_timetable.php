@@ -38,7 +38,7 @@ $searchResult = mysqli_query($link, $searchQuery);
         }
     } else {
         ?>
-        <p style="color:red">Student is not found...</p>
+        <p>Student is not found...</p>
         <?php
     }
 

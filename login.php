@@ -115,7 +115,6 @@ mysqli_close($link);
         </div>
 
 </nav>
-<!-- End of adapted code -->
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -161,7 +160,7 @@ mysqli_close($link);
         </div>
     </div>
 </div>
-
+<!-- End of adapted code -->
 </body>
 
 </html>

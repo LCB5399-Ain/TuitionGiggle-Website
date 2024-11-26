@@ -21,6 +21,7 @@ $classroom_err = $subject_err = $time_of_room_err = $teacherID_err = "";
 $queryTeachers = "SELECT * FROM teachers WHERE teachers.tuitionID='{$_SESSION['tuitionID']}'";
 $teacherResult = mysqli_query($link, $queryTeachers);
 
+// Code adapted from Yassein, 2020
 if (mysqli_num_rows($teacherResult) <= 0) {
     // Display message if the teacher does not exist
     echo "<script>
@@ -101,7 +102,7 @@ if (empty($classroom_err) && empty($subject_err) && empty($time_of_room_err) && 
     // Handling errors
     echo "Error preparing the query. Please try again later.";
 }
-
+// End of adapted code
 mysqli_stmt_close($stmnt);
 
 }

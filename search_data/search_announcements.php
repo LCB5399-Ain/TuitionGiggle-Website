@@ -38,7 +38,7 @@ if (!empty($_POST['query'])) {
         }
     } else {
         ?>
-        <p style="color:red">Announcement is not found...</p>
+        <p>Announcement is not found...</p>
         <?php
     }
 }

@@ -37,7 +37,7 @@ if (!empty($_POST['query'])) {
         }
     } else {
         ?>
-        <p style="color:red">Classroom is not found...</p>
+        <p>Classroom is not found...</p>
         <?php
     }
 }

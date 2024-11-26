@@ -22,6 +22,7 @@ $fullName_err = $phoneNumber_err = $parentEmail_err = $parentAddress_err = $stud
 $queryStudents = "SELECT * FROM students WHERE students.tuitionID = '{$_SESSION['tuitionID']}'";
 $studentsResult = mysqli_query($link, $queryStudents);
 
+// Code adapted from Yassein, 2020
 if (mysqli_num_rows($studentsResult) <= 0) {
     // Display message if the student does not exist
     echo "<script>
@@ -103,7 +104,7 @@ if (empty($fullName_err) && empty($phoneNumber_err) && empty($parentEmail_err) &
         // Handling errors
         echo "Error preparing the query. Please try again later.";
     }
-    
+    // End of adapted code
     mysqli_stmt_close($stmnt);
     
     }

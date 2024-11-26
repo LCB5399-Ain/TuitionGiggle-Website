@@ -153,7 +153,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
     </nav>
-    <!-- End of adapted code -->
 
     <div class="container my-5">
         <div class="row justify-content-center">
@@ -229,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
-
+<!-- End of adapted code -->
 </body>
 
 </html>

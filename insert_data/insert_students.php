@@ -19,7 +19,7 @@ $studentUsername_err = $password_err = $confirm_password_err = $fullName_err = $
 
 // Use POST to process form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+// Code adapted from Yassein, 2020
     // Username validation
     $submitted_studentUsername = trim($_POST["studentUsername"] ?? '');
     if (empty($submitted_studentUsername)) {
@@ -123,7 +123,7 @@ if (
         // Handling errors
         echo "Error preparing the query. Please try again later.";
     }
-    
+    // End of adapted code
     mysqli_stmt_close($stmnt);
     
     }
