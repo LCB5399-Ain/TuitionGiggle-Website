@@ -2,7 +2,7 @@
 
 require_once "dbconf.php";
 
-// Code adapted from TutorialRepublic, nd
+// Code adapted from TutorialRepublic, no date
 $tuitionUsername = $password = $confirm_password = $name = $tutionEmail = $tuitionAddress = $phoneNumber = "";
 $tuitionUsername_err = $password_err = $confirm_password_err = $name_err = $tutionEmail_err = $tuitionAddress_err = $phoneNumber_err = "";
 

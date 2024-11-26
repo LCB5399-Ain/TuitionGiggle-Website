@@ -13,7 +13,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 require_once "dbconf.php"; 
 
-// Code adapted from TutorialRepublic, nd
+// Code adapted from TutorialRepublic, no date
 // Initialize the variables
 $newPassword = $confirmPassword = "";
 $newPassword_error = $confirmPassword_error = "";
