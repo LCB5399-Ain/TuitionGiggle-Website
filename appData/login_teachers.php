@@ -8,6 +8,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $password = $_POST['password'];
 
 // Select teachers with the specific username
+// Code adapted from Yassein, 2020
 $result = $connect -> query("SELECT * FROM teachers WHERE username='".$username."'");
 
 $dataResult = array();
@@ -23,6 +24,7 @@ while ($row = $result -> fetch_assoc()) {
 
 // Use json to send the data
 echo json_encode($dataResult);
+// End of adapted code
 
 } else {
     // Handle potential errors with prepared statement
